@@ -2,6 +2,7 @@ import { pipeline, env } from '@huggingface/transformers';
 
 // Disable local models, use Hugging Face CDN
 env.allowLocalModels = false;
+env.useBrowserCache = true;
 
 class PipelineSingleton {
   static summarizer: any = null;
@@ -9,14 +10,18 @@ class PipelineSingleton {
 
   static async getSummarizer(progress_callback: any) {
     if (this.summarizer === null) {
-      this.summarizer = await pipeline('summarization', 'Xenova/distilbart-cnn-6-6', { progress_callback });
+      this.summarizer = await pipeline('summarization', 'Xenova/distilbart-cnn-6-6', { 
+        progress_callback
+      });
     }
     return this.summarizer;
   }
 
   static async getNer(progress_callback: any) {
     if (this.ner === null) {
-      this.ner = await pipeline('token-classification', 'Xenova/bert-base-NER', { progress_callback });
+      this.ner = await pipeline('token-classification', 'Xenova/bert-base-NER', { 
+        progress_callback
+      });
     }
     return this.ner;
   }
@@ -37,6 +42,7 @@ self.addEventListener('message', async (event) => {
       const summaryResult = await summarizer(text, {
         max_new_tokens: 150,
         min_new_tokens: 30,
+        do_sample: false, // Deterministic for speed
       });
       const summary = summaryResult[0].summary_text;
 

@@ -38,6 +38,9 @@ export default function Layout() {
               <Link to="/" className="text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1">
                 <Home className="w-4 h-4" /> Dashboard
               </Link>
+              <Link to="/profile" className="text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1">
+                <User className="w-4 h-4" /> Profile
+              </Link>
               <div className="h-4 w-px bg-slate-200 dark:bg-slate-800" />
               <button
                 onClick={handleSignOut}
