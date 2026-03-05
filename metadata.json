@@ -1,0 +1,5 @@
+{
+  "name": "AI Study Buddy",
+  "description": "A free, local AI-powered study tool for students. Generates summaries, flashcards, and quizzes directly in the browser.",
+  "requestFramePermissions": []
+}
